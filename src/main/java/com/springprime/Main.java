@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @SpringBootApplication
 // We can search for the configuration if not specified by using @ComponentScan
 // And then add the @EnableAutoConfiguration
@@ -14,7 +15,8 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
     @GetMapping("/")
-    public String greet () {
-        return "Hello";
+    public GreetResponse greet () {
+        return new GreetResponse("Hello") ;
     }
+    record GreetResponse (String greet){}
 }
