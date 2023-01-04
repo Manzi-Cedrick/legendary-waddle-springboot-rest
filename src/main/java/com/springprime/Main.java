@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
+// Connecting to docker image
 @SpringBootApplication
 // We can search for the configuration if not specified by using @ComponentScan
 // And then add the @EnableAutoConfiguration
