@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+// We can search for the configuration if not specified by using @ComponentScan
+// And then add the @EnableAutoConfiguration
 @RestController
 public class Main {
     public static void main(String[] args){
