@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 // Connecting to docker image
 @SpringBootApplication
@@ -40,8 +41,23 @@ public class Main {
         customer.setEmail(request.email());
         customerRepository.save(customer);
     }
-    @DeleteMapping("/delete/{customerID}")
-    public void deleteUser (@PathVariable("customerID") Integer id){
+    @DeleteMapping("{customerID}")
+    public void deleteUser(@PathVariable("customerID") Integer id){
         customerRepository.deleteById(id);
+    }
+
+    @PutMapping("{customerID}")
+    public void updateUser(@PathVariable("customerID") Integer id,@RequestBody NewCustomerRequest request){
+        Customer customer = customerRepository.findById(id).get();
+        if(Objects.nonNull(customer.getName()) && !"".equalsIgnoreCase(customer.getName())){
+            customer.setName(request.name());
+        }
+        if(Objects.nonNull(customer.getEmail()) && !"".equalsIgnoreCase(customer.getEmail())){
+            customer.setEmail(request.email());
+        }
+        if(Objects.nonNull(customer.getAge())){
+            customer.setAge(request.age());
+        }
+        customerRepository.save(customer);
     }
 }
