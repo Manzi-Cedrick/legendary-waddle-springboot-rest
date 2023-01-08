@@ -40,4 +40,8 @@ public class Main {
         customer.setEmail(request.email());
         customerRepository.save(customer);
     }
+    @DeleteMapping("/delete/{customerID}")
+    public void deleteUser (@PathVariable("customerID") Integer id){
+        customerRepository.deleteById(id);
+    }
 }
